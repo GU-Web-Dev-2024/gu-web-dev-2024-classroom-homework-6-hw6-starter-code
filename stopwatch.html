@@ -26,7 +26,7 @@
 
             //Styles using jQuery
             $('body').css({
-                backgroundColor: "#000",
+                backgroundColor: "#00abe3",
                 color: "#FFFFFF",
                 textAlign: "center"
             });
@@ -49,6 +49,25 @@
                 borderRadius: "5px",
                 opacity: 1.0
             });
+
+            $buttonStart.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
+            $buttonStop.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
+            $buttonReset.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
 
             $buttonStart.on("click", function () {
                 clearInterval(interval);
