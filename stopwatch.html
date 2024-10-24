@@ -35,6 +35,7 @@
                 backgroundColor: "#ffeb0a",
                 color: "#000",
                 fontWeight: "bold",
+                fontSize: "16px",
                 margins: "50px auto",
                 padding: "20px",
                 border: "5px solid #FFF"
@@ -60,7 +61,8 @@
                 fontSize: "20px",
                 borderRadius: "10px",
                 margin: "2px",
-                padding: "3px 6px"
+                padding: "3px 6px",
+                transition: "background-color 0.5s"
             };
 
             $buttonStart.css($.extend({}, buttonStyles));
@@ -92,6 +94,7 @@
                 interval = setInterval(startTimer, 10);
                 $timer.removeClass("paused").addClass("running");
                 $timer.css("background-color", "#4eff00");
+                opacityAnimation();
             });
 
             $buttonStop.on("click", function () {
@@ -99,6 +102,7 @@
                 clearInterval(opacityInterval);
                 $timer.removeClass("running").addClass("paused");
                 $timer.css("background-color", "#ff0000");
+                $timer.css("opacity", 1.0);
             });
 
             $buttonReset.on("click", function () {
@@ -113,6 +117,7 @@
 
                 $timer.removeClass("running paused");
                 $timer.css("background-color", "#6e6e6e");
+                $timer.css("opacity", 1.0);
             });
 
             function startTimer() {
@@ -138,6 +143,12 @@
                 if (seconds > 9) {
                     $appendSeconds.html(seconds);
                 }
+            }
+            function opacityAnimation() {
+                opacityInterval = setInterval(function (){
+                    $timer.animate({ opacity: 0.8}, 500)
+                    .animate({ opacity: 1.0}, 500)
+                }, 1000);
             }
         });
     </script>
