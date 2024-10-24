@@ -1,6 +1,9 @@
 <!-- 
     HW6 Starter code
      Modified from: https://codepen.io/cathydutton/pen/GBcvo
+
+    Sources Used:
+    How to make opacity animation: https://stackoverflow.com/questions/3390361/jquery-opacity-animation
     -->
 <!DOCTYPE html>
 <html lang="en">
@@ -93,7 +96,7 @@
                 clearInterval(opacityInterval);
                 interval = setInterval(startTimer, 10);
                 $timer.removeClass("paused").addClass("running");
-                $timer.css("background-color", "#4eff00");
+                $timer.css("background-color", "#00c309");
                 opacityAnimation();
             });
 
