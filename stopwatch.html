@@ -11,9 +11,12 @@
     <title>HW6 - JQuery</title>
     <script>
         $(document).ready(function () {
+
+            $("#timer").addClass("timer-background");
+
             var seconds = "00";
             var tens = "00";
-            var $appendTens = $("tens");
+            var $appendTens = $("#tens");
             var $appendSeconds = $("#seconds");
             var $buttonStart = $('#button-start');
             var $buttonStop = $('#button-stop');
@@ -65,13 +68,21 @@
             }
         });
     </script>
+    <style>
+
+        .timer-background {
+            background-color: orange;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
         <h1>Stopwatch</h1>
         <h2>Vanilla JavaScript Stopwatch</h2>
-        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
         <button id="button-reset">Reset</button>
