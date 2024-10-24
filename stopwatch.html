@@ -14,22 +14,22 @@
             var seconds = "00";
             var tens = "00";
             var $appendTens = $("tens");
-            var $appendSeconds = $("seconds");
-            var $buttonStart = $('button-start');
-            var $buttonStop = $('button-stop');
-            var $buttonReset = $('button-reset');
+            var $appendSeconds = $("#seconds");
+            var $buttonStart = $('#button-start');
+            var $buttonStop = $('#button-stop');
+            var $buttonReset = $('#button-reset');
             var interval;
 
-            $buttonStart.on('click', function () {
+            $("buttonStart").on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
             });
 
-            $buttonStop.on('click', function () {
+            $("buttonStop").on("click", function () {
                 clearInterval(interval);
             });
 
-            $buttonReset.on('click', function () {
+            $("buttonReset").on("click", function () {
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
