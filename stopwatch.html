@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW6 - JQuery</title>
     <script>
-        window.onload = function () {
+        $(document).ready(function () {
             var seconds = "00";
             var tens = "00";
             var $appendTens = $("#tens");
@@ -63,7 +63,7 @@
                     $appendSeconds.html(seconds);
                 }
             }
-        }
+        });
     </script>
 </head>
 
