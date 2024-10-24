@@ -8,11 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>HW6 - JQuery</title>
     <script>
         $(document).ready(function () {
-
-            $("#timer").addClass("timer-background");
 
             var seconds = "00";
             var tens = "00";
@@ -23,16 +22,32 @@
             var $buttonReset = $('#button-reset');
             var interval;
 
-            $("buttonStart").on("click", function () {
+            //Styles using jQuery
+            $('body').css({
+                backgroundColor: "#FFA500",
+                textColor: "#000",
+                textAlign: "center"
+            });
+
+            $(".wrapper").css({
+                backgroundColor: "#FFA500",
+                textColor: "#000",
+                fontWeight: "bold",
+                margins: "50px auto",
+                padding: "20px",
+                border: "5px solid #000"
+            });
+
+            $buttonStart.on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
             });
 
-            $("buttonStop").on("click", function () {
+            $buttonStop.on("click", function () {
                 clearInterval(interval);
             });
 
-            $("buttonReset").on("click", function () {
+            $buttonReset.on("click", function () {
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
@@ -68,14 +83,6 @@
             }
         });
     </script>
-    <style>
-
-        .timer-background {
-            background-color: orange;
-            padding: 20px;
-            border-radius: 10px;
-        }
-    </style>
 </head>
 
 <body>
