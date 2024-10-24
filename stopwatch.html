@@ -53,9 +53,6 @@
 
             $timer.css({
                 backgroundColor: "#ff0000",
-                fontFamily: "ui-rounded",
-                fontWeight: "bold",
-                fontSize: "14px",
                 margins: "1px",
                 padding: "1px",
                 width: "200 px",
@@ -63,6 +60,9 @@
                 borderRadius: "50px",
                 opacity: 1.0
             });
+
+            $appendSeconds.css("fontSize", "20px"); // Change this to your desired size
+            $appendTens.css("fontSize", "20px");
 
             $buttonStart.addClass('btn start');
             $buttonStop.addClass('btn stop');
