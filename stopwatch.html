@@ -51,6 +51,7 @@
 
             $buttonStart.on("click", function () {
                 clearInterval(interval);
+                clearInterval(opacityInterval);
                 interval = setInterval(startTimer, 10);
                 $timer.removeClass("paused").addClass("running");
                 $timer.css("background-color", "#4eff00");
@@ -58,12 +59,14 @@
 
             $buttonStop.on("click", function () {
                 clearInterval(interval);
+                clearInterval(opacityInterval);
                 $timer.removeClass("running").addClass("paused");
                 $timer.css("background-color", "#ff0000");
             });
 
             $buttonReset.on("click", function () {
                 clearInterval(interval);
+                clearInterval(opacityInterval);
                 tens = "00";
                 seconds = "00";
 
