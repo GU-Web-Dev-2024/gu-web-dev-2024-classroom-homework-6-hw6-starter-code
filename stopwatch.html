@@ -13,6 +13,7 @@
     <script>
         $(document).ready(function () {
 
+            //Change JavaScript DOM selection methods to jQuery $()
             var seconds = "00";
             var tens = "00";
             var $appendTens = $("#tens");
@@ -24,7 +25,6 @@
             var interval;
             var opacityInterval;
 
-            //Styles using jQuery
             $('body').css({
                 backgroundColor: "#00abe3",
                 color: "#FFFFFF",
@@ -50,6 +50,22 @@
                 opacity: 1.0
             });
 
+            $buttonStart.addClass('btn start');
+            $buttonStop.addClass('btn stop');
+            $buttonReset.addClass('btn reset');
+
+            var buttonStyles = {
+                backgroundColor: "#000",
+                color: "#ff0000",
+                borderRadius: "10px",
+                margin: "2px",
+                padding: "3px 6px"
+            };
+
+            $buttonStart.css($.extend({}, buttonStyles));
+            $buttonStop.css($.extend({}, buttonStyles));
+            $buttonReset.css($.extend({}, buttonStyles));           
+
             $buttonStart.hover(function(){
                 $(this).css("backgroun-color", "#FFF"); 
             }, function () {
@@ -68,7 +84,7 @@
                 $(this).css("background-color", "000");
             });
 
-
+            //change .onclick to .on
             $buttonStart.on("click", function () {
                 clearInterval(interval);
                 clearInterval(opacityInterval);
