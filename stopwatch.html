@@ -39,21 +39,27 @@
                 border: "5px solid #FFF"
             });
 
+            $timer.css("background-color", "#FFF");
+
             $timer.css({
                 backgroundColor: "#ff0000",
-                margins: "20px",
+                margins: "10px",
                 padding: "10px",
                 borderRadius: "5px",
                 opacity: 1.0
-            })
+            });
 
             $buttonStart.on("click", function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
+                $timer.removeClass("paused").addClass("running");
+                $timer.css("background-color", "#4eff00");
             });
 
             $buttonStop.on("click", function () {
                 clearInterval(interval);
+                $timer.removeClass("running").addClass("paused");
+                $timer.css("background-color", "#ff0000");
             });
 
             $buttonReset.on("click", function () {
@@ -64,6 +70,9 @@
                 //Change from innerHTML -> html()
                 $appendTens.html(tens);
                 $appendSeconds.html(seconds);
+
+                $timer.removeClass("running paused");
+                $timer.css("background-color", "#6e6e6e");
             });
 
             function startTimer() {
