@@ -1,6 +1,10 @@
 <!-- 
     HW6 Starter code
      Modified from: https://codepen.io/cathydutton/pen/GBcvo
+
+    Sources Used:
+    How to make opacity animation: https://stackoverflow.com/questions/3390361/jquery-opacity-animation
+    How to align image: https://www.geeksforgeeks.org/how-to-align-image-in-html/
     -->
 <!DOCTYPE html>
 <html lang="en">
@@ -8,71 +12,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>HW6 - JQuery</title>
     <script>
-        window.onload = function () {
+        $(document).ready(function () {
+
+            //Change JavaScript DOM selection methods to jQuery $()
             var seconds = "00";
             var tens = "00";
-            var appendTens = document.getElementById("tens")
-            var appendSeconds = document.getElementById("seconds")
-            var buttonStart = document.getElementById('button-start');
-            var buttonStop = document.getElementById('button-stop');
-            var buttonReset = document.getElementById('button-reset');
+            var $appendTens = $("#tens");
+            var $appendSeconds = $("#seconds");
+            var $buttonStart = $('#button-start');
+            var $buttonStop = $('#button-stop');
+            var $buttonReset = $('#button-reset');
+            var $timer = $("#timer");
             var interval;
+            var opacityInterval;
 
-            buttonStart.onclick = function () {
+            $('body').css({
+                backgroundColor: "#00abe3",
+                color: "#FFFFFF",
+                textAlign: "center"
+            });
+
+            $(".wrapper").css({
+                backgroundColor: "#ffeb0a",
+                color: "#000",
+                fontFamily: "ui-rounded",
+                fontWeight: "bold",
+                fontSize: "16px",
+                margin: "auto",
+                padding: "5px",
+                borderRadius: "100px",
+                border: "5px solid #FFF",
+                width: "500px",
+                height: "600px",
+                alignItems: "center",
+                borderSpacing: "15px 50px"
+            });
+
+            $timer.css("background-color", "#FFF");
+
+            $timer.css({
+                backgroundColor: "#ff0000",
+                margin: "auto",
+                padding: "1px",
+                width: "200px",
+                height: "50px",
+                borderRadius: "50px",
+                textAlign: "center",
+                opacity: 1.0
+            });
+
+            $appendSeconds.css("fontSize", "40px");
+            $appendTens.css("fontSize", "40px");
+
+            $buttonStart.addClass('btn start');
+            $buttonStop.addClass('btn stop');
+            $buttonReset.addClass('btn reset');
+
+            var buttonStyles = {
+                backgroundColor: "#FFF",
+                color: "#ff0000",
+                fontSize: "35px",
+                fontFamily: "ui-rounded",
+                fontWeight: "bold",
+                borderRadius: "10px",
+                margin: "20px",
+                padding: "3px 6px",
+                transition: "background-color 0.5s"
+            };
+
+            $buttonStart.css($.extend({}, buttonStyles));
+            $buttonStop.css($.extend({}, buttonStyles));
+            $buttonReset.css($.extend({}, buttonStyles));           
+
+            $buttonStart.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
+            $buttonStop.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
+            $buttonReset.hover(function(){
+                $(this).css("backgroun-color", "#FFF"); 
+            }, function () {
+                $(this).css("background-color", "000");
+            });
+
+            //change .onclick to .on
+            $buttonStart.on("click", function () {
                 clearInterval(interval);
+                clearInterval(opacityInterval);
                 interval = setInterval(startTimer, 10);
-            }
+                $timer.removeClass("paused").addClass("running");
+                $timer.css("background-color", "#00c309");
+                opacityAnimation();
+            });
 
-            buttonStop.onclick = function () {
+            $buttonStop.on("click", function () {
                 clearInterval(interval);
-            }
+                clearInterval(opacityInterval);
+                $timer.removeClass("running").addClass("paused");
+                $timer.css("background-color", "#ff0000");
+                $timer.css("opacity", 1.0);
+            });
 
-            buttonReset.onclick = function () {
+            $buttonReset.on("click", function () {
                 clearInterval(interval);
+                clearInterval(opacityInterval);
                 tens = "00";
                 seconds = "00";
-                appendTens.innerHTML = tens;
-                appendSeconds.innerHTML = seconds;
-            }
+
+                //Change from innerHTML -> html()
+                $appendTens.html(tens);
+                $appendSeconds.html(seconds);
+
+                $timer.removeClass("running paused");
+                $timer.css("background-color", "#6e6e6e");
+                $timer.css("opacity", 1.0);
+            });
 
             function startTimer() {
                 tens++;
 
-                if (tens < 9) {
-                    appendTens.innerHTML = "0" + tens;
+                if (tens <= 9) {
+                    $appendTens.html("0" + tens);
                 }
 
                 if (tens > 9) {
-                    appendTens.innerHTML = tens;
+                    $appendTens.html(tens);
 
                 }
 
                 if (tens > 99) {
                     console.log("seconds");
                     seconds++;
-                    appendSeconds.innerHTML = "0" + seconds;
+                    $appendSeconds.html("0" + seconds);
                     tens = 0;
-                    appendTens.innerHTML = "0" + 0;
+                    $appendTens.html("0" + 0);
                 }
 
                 if (seconds > 9) {
-                    appendSeconds.innerHTML = seconds;
+                    $appendSeconds.html(seconds);
                 }
             }
-        }
+            function opacityAnimation() {
+                opacityInterval = setInterval(function (){
+                    $timer.animate({ opacity: 0.8}, 500)
+                    .animate({ opacity: 1.0}, 500)
+                }, 1000);
+            }
+        });
     </script>
 </head>
 
 <body>
     <div class="wrapper">
-        <h1>Stopwatch</h1>
-        <h2>Vanilla JavaScript Stopwatch</h2>
-        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
-        <button id="button-start">Start</button>
-        <button id="button-stop">Stop</button>
-        <button id="button-reset">Reset</button>
+        <h1>Donald Duck</h1>
+        <h2>Stop Watch!</h2>
+        <img src="donald_duck.webp" alt="Disney Donald Duck" width="150" align="center"/>
+        <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <button id="button-start" align="center">Start</button>
+        <button id="button-stop" align="center">Stop</button>
+        <button id="button-reset" align="center">Reset</button>
     </div>
 </body>
 
